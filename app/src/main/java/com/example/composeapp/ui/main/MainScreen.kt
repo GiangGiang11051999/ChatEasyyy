@@ -9,8 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -44,12 +48,21 @@ fun renderLayoutMain() {
 @Composable
 fun TextContentSplash() {
     val context = LocalContext.current
-    Column(modifier = Modifier.fillMaxHeight()) {
+    Column(modifier = Modifier.fillMaxHeight().graphicsLayer {  }
+        .drawWithContent {
+            val colors = listOf(Color.Black, Color(0x242A37))
+            drawContent()
+            drawRect(
+                brush = Brush.verticalGradient(colors),
+                blendMode = BlendMode.DstIn
+            )
+        }) {
         Spacer(modifier = Modifier.height(250.dp))
         Text(
             text = context.getString(R.string.title_content_header),
             style = Typography.displayLarge,
-            color = MaterialTheme.colorScheme.onPrimary
+            color = MaterialTheme.colorScheme.onPrimary,
+            modifier = Modifier.padding(horizontal = 15.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Text(
@@ -76,7 +89,9 @@ fun TextContentSplash() {
                 )
             ),
             textId = R.string.title_button_login,
-            textColor = MaterialTheme.colorScheme.primary
+            textColor = MaterialTheme.colorScheme.primary,
+            paddingLayout = 30.dp,
+            isTextAllCaps = false
         )
         Spacer(modifier = Modifier.height(20.dp))
         TextButtonChat(
@@ -96,7 +111,9 @@ fun TextContentSplash() {
                 )
             ),
             textId = R.string.title_button_signup,
-            textColor = MaterialTheme.colorScheme.onPrimary
+            textColor = MaterialTheme.colorScheme.onPrimary,
+            paddingLayout = 30.dp,
+            isTextAllCaps = false
         )
         Spacer(modifier = Modifier.height(20.dp))
         Text(
@@ -144,7 +161,7 @@ fun TextContentSplash() {
 
 @Composable
 fun CreateBackgroundButton(listColors: List<Color>): Modifier = Modifier
-    .height(60.dp)
+    .height(44.dp)
     .fillMaxWidth()
     .background(
         shape = Shapes.medium,

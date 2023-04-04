@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.composeapp.ui.theme.Typography
 
@@ -19,11 +20,15 @@ fun TextButtonChat(
     modifier: Modifier,
     textId: Int,
     textColor: Color,
-    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
+    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+    paddingLayout: Dp = 0.dp,
+    isTextAllCaps: Boolean = false
 ) {
+    val textBtn = if (isTextAllCaps) LocalContext.current.getString(textId)
+        .uppercase() else LocalContext.current.getString(textId)
     Box(
         modifier = Modifier
-            .padding(horizontal = 30.dp)
+            .padding(horizontal = paddingLayout)
     ) {
         Button(
             onClick = onClickListener,
@@ -32,7 +37,7 @@ fun TextButtonChat(
             colors = colors
         ) {
             Text(
-                text = LocalContext.current.getString(textId),
+                text = textBtn,
                 style = Typography.displaySmall,
                 color = textColor
             )
