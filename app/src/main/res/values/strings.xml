@@ -6,4 +6,9 @@
     <string name="title_button_signup">Sign Up</string>
     <string name="title_header_8">Or login with</string>
     <string name="title_signup_screen">Create an account</string>
+    <string name="title_welcome_back">Welcome back </string>
+    <string name="title_welcome_back1">Login to your account</string>
+    <string name="title_forgot_password">Forgot password</string>
+    <string name="title_forgot_password1">Please enter your email address. You will receive a link to create a new password via email.</string>
+    <string name="title_send">Send</string>
 </resources>

@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -32,15 +33,19 @@ fun loadLoginScreen() {
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(color = MaterialTheme.colorScheme.onPrimaryContainer)
             .padding(vertical = 50.dp, horizontal = 20.dp)
     ) {
         Column {
+            IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                .height(30.dp)
+                .width(30.dp)) {
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Close", tint = MaterialTheme.colorScheme.onPrimary)
+            }
+            Spacer(modifier = Modifier.height(10.dp))
             loadTitleLogin()
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(50.dp))
             formLogin()
-            Spacer(modifier = Modifier.height(20.dp))
-                CheckRememberPassword()
+
                 Spacer(modifier = Modifier.height(40.dp))
                 ButtonLogin()
             Spacer(modifier = Modifier.height(100.dp))
@@ -53,7 +58,12 @@ fun loadLoginScreen() {
 fun loadTitleLogin() {
     val context: Context = LocalContext.current
     Text(
-        text = context.getString(R.string.title_button_login), style = Typography.displayLarge,
+        text = context.getString(R.string.title_welcome_back), style = Typography.headlineLarge,
+        color = MaterialTheme.colorScheme.onPrimary
+    )
+    Spacer(modifier = Modifier.height(10.dp))
+    Text(
+        text = context.getString(R.string.title_welcome_back1), style = Typography.displayMedium,
         color = MaterialTheme.colorScheme.onPrimary
     )
 }
@@ -63,79 +73,44 @@ fun loadTitleLogin() {
 fun formLogin() {
     OutlinedTextFieldChat(onValueChange = {
 
-    }, textPlaceholder = "Username", loadingIcon = {
-        Icon(
-            imageVector = Icons.Default.Person,
-            contentDescription = "Icon Username"
-        )
-    })
+    }, textPlaceholder = "Email")
     Spacer(modifier = Modifier.height(30.dp))
     OutlinedTextFieldChat(onValueChange = {
 
-    }, textPlaceholder = "Password", loadingIcon = {
-        Icon(
-            painter = painterResource(id = R.drawable.lock),
-            contentDescription = "Icon password"
-        )
-    }, isTrailing = true)
-}
-
-@Composable
-fun CheckRememberPassword() {
-    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Checkbox(
-            checked = false,
-            onCheckedChange = {},
-            colors = CheckboxDefaults.colors(
-                checkedColor = MaterialTheme.colorScheme.onPrimary,
-                disabledIndeterminateColor = MaterialTheme.colorScheme.surfaceVariant
-            )
-        )
-        Text(
-            text = "Remember me",
-            style = Typography.labelSmall,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.CenterEnd
-        ) {
-            TextButton(onClick = { }) {
-                Text(
-                    text = "Forgot Password", style = Typography.displayMedium,
-                    color = MaterialTheme.colorScheme.primaryContainer
-                )
-            }
-        }
-
-    }
+    }, textPlaceholder = "Password", isTrailing = true)
 }
 
 @Composable
 fun ButtonLogin() {
-    Button(
-        onClick = { /*TODO*/ },
-        modifier = Modifier
-            .height(60.dp)
-            .fillMaxWidth(),
-        shape = Shapes.medium,
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiaryContainer)
-    ) {
-
-        Text(
-            text = "Login", style = Typography.displaySmall,
-            color = MaterialTheme.colorScheme.onPrimary
-        )
-    }
     TextButtonChat(
         onClickListener = { /*TODO*/ },
         modifier = Modifier
-            .height(60.dp)
-            .fillMaxWidth(),
+            .height(55.dp)
+            .fillMaxWidth()
+            .background(
+                shape = Shapes.medium,
+                brush = Brush.horizontalGradient(
+                    colors = listOf(
+                        MaterialTheme.colorScheme.primaryContainer,
+                        MaterialTheme.colorScheme.primary,
+                    ),
+                    startX = 0f,
+                    endX = 500f
+                ),
+            ),
         textId = R.string.title_button_login,
         textColor = MaterialTheme.colorScheme.onPrimary,
-        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.onTertiaryContainer)
+        isTextAllCaps = true
     )
+    Spacer(modifier = Modifier.height(10.dp))
+    Box(modifier = Modifier.fillMaxWidth() , contentAlignment = Alignment.Center){
+        TextButton(onClick = { /*TODO*/ }, ) {
+            Text(
+                text = "Forgot your password?", style = Typography.displayMedium,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+    }
 }
 
 @Composable
@@ -210,27 +185,6 @@ fun LoginWithSocial() {
             )
         }
 
-    }
-
-    Spacer(modifier = Modifier.height(30.dp))
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "Don't have an account?",
-            style = Typography.displaySmall,
-            color = MaterialTheme.colorScheme.onPrimary,
-        )
-        Spacer(modifier = Modifier.width(10.dp))
-        TextButton(onClick = { /*TODO*/ }, modifier = Modifier.background(Color.Transparent)) {
-            Text(
-                text = "Sign up", style = Typography.displaySmall,
-                color = MaterialTheme.colorScheme.onError
-            )
-        }
     }
 }
 

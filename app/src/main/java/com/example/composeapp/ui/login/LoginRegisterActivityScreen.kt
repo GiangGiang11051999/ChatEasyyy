@@ -50,7 +50,7 @@ class LoginRegisterActivityScreen : ComponentActivity() {
                         contentDescription = "Background content with home login register",
                         contentScale = ContentScale.FillBounds
                     )
-                    CreateLayoutRegisterScreen()
+                    LoadScreenForgotPassword()
                 }
             }
         }
