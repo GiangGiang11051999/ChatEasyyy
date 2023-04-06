@@ -7,31 +7,41 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.composeapp.R
+import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
 import com.example.composeapp.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun CreateLayoutRegisterScreen() {
+fun CreateLayoutRegisterScreen(
+    navController: NavHostController,
+    navigationActions: ChatNavigationActions
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .padding(vertical = 50.dp, horizontal = 20.dp)
     ) {
-        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.height(30.dp).width(30.dp)) {
-            Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Close", tint = MaterialTheme.colorScheme.onPrimary)
+        IconButton(
+            onClick = { navController.popBackStack() },
+            modifier = Modifier
+                .height(30.dp)
+                .width(30.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Close",
+                tint = MaterialTheme.colorScheme.onPrimary
+            )
         }
         Spacer(modifier = Modifier.height(10.dp))
         LoadTitleRegister()

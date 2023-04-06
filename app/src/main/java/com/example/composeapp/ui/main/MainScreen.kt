@@ -1,15 +1,14 @@
 package com.example.composeapp.ui.main
 
-import android.content.Intent
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
@@ -19,18 +18,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeapp.R
+import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.TextButtonChat
-import com.example.composeapp.ui.login.LoginRegisterActivityScreen
 import com.example.composeapp.ui.theme.Shapes
 import com.example.composeapp.ui.theme.Typography
 
-
-@Preview(showBackground = true, name = "GiangGiang")
 @Composable
-fun renderLayoutMain() {
+fun MainScreen(navigationActions: ChatNavigationActions) {
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -41,12 +37,12 @@ fun renderLayoutMain() {
             contentDescription = "Background content with home login register",
             contentScale = ContentScale.FillBounds
         )
-        TextContentSplash()
+        TextContentSplash(navigationActions)
     }
 }
 
 @Composable
-fun TextContentSplash() {
+fun TextContentSplash(navigationActions: ChatNavigationActions) {
     val context = LocalContext.current
     Column(modifier = Modifier.fillMaxHeight().graphicsLayer {  }
         .drawWithContent {
@@ -73,15 +69,7 @@ fun TextContentSplash() {
         )
         Spacer(modifier = Modifier.height(40.dp))
         TextButtonChat(
-            onClickListener = {
-                Log.d("TAG", "TextContentSplash: log in called....")
-                context.startActivity(
-                    Intent(
-                        context,
-                        LoginRegisterActivityScreen::class.java
-                    )
-                )
-            },
+            onClickListener = navigationActions.navigateToLogin,
             modifier = CreateBackgroundButton(
                 listColors = listOf(
                     MaterialTheme.colorScheme.onPrimary,
@@ -95,15 +83,7 @@ fun TextContentSplash() {
         )
         Spacer(modifier = Modifier.height(20.dp))
         TextButtonChat(
-            onClickListener = {
-                Log.d("TAG", "TextContentSplash: sign up called....")
-                context.startActivity(
-                    Intent(
-                        context,
-                        LoginRegisterActivityScreen::class.java
-                    )
-                )
-            },
+            onClickListener = navigationActions.navigateToRegister,
             modifier = CreateBackgroundButton(
                 listColors = listOf(
                     MaterialTheme.colorScheme.onPrimaryContainer,
@@ -141,12 +121,6 @@ fun TextContentSplash() {
             }
             Spacer(modifier = Modifier.width(10.dp))
             IconButton(onClick = {
-                context.startActivity(
-                    Intent(
-                        context,
-                        LoginRegisterActivityScreen::class.java
-                    )
-                )
             }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_twitter_n_bg),

@@ -5,29 +5,26 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.composeapp.R
+import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
 import com.example.composeapp.ui.theme.Typography
 
 @ExperimentalMaterial3Api
-@Preview(showBackground = true)
 @Composable
-fun loadLoginScreen() {
+fun LoadLoginScreen(navController: NavHostController, navigationActions: ChatNavigationActions) {
 
     Box(
         modifier = Modifier
@@ -36,18 +33,24 @@ fun loadLoginScreen() {
             .padding(vertical = 50.dp, horizontal = 20.dp)
     ) {
         Column {
-            IconButton(onClick = { /*TODO*/ }, modifier = Modifier
-                .height(30.dp)
-                .width(30.dp)) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Close", tint = MaterialTheme.colorScheme.onPrimary)
+            IconButton(
+                onClick = { navController.popBackStack() }, modifier = Modifier
+                    .height(30.dp)
+                    .width(30.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Close",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
             }
             Spacer(modifier = Modifier.height(10.dp))
             loadTitleLogin()
             Spacer(modifier = Modifier.height(50.dp))
             formLogin()
 
-                Spacer(modifier = Modifier.height(40.dp))
-                ButtonLogin()
+            Spacer(modifier = Modifier.height(40.dp))
+            ButtonLogin(navigationActions)
             Spacer(modifier = Modifier.height(100.dp))
             LoginWithSocial()
         }
@@ -81,7 +84,7 @@ fun formLogin() {
 }
 
 @Composable
-fun ButtonLogin() {
+fun ButtonLogin(navigationActions: ChatNavigationActions) {
     TextButtonChat(
         onClickListener = { /*TODO*/ },
         modifier = Modifier
@@ -103,8 +106,8 @@ fun ButtonLogin() {
         isTextAllCaps = true
     )
     Spacer(modifier = Modifier.height(10.dp))
-    Box(modifier = Modifier.fillMaxWidth() , contentAlignment = Alignment.Center){
-        TextButton(onClick = { /*TODO*/ }, ) {
+    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+        TextButton(onClick = navigationActions.navigateToForgotPassword) {
             Text(
                 text = "Forgot your password?", style = Typography.displayMedium,
                 color = MaterialTheme.colorScheme.onPrimary

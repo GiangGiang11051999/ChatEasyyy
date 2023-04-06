@@ -10,18 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.composeapp.R
+import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
 import com.example.composeapp.ui.theme.Typography
 
 @ExperimentalMaterial3Api
-@Preview(showBackground = true)
 @Composable
-fun LoadScreenForgotPassword() {
+fun LoadScreenForgotPassword(
+    navController: NavHostController,
+    navigationActions: ChatNavigationActions
+) {
 
     Box(
         modifier = Modifier
@@ -31,7 +34,7 @@ fun LoadScreenForgotPassword() {
     ) {
         Column {
             IconButton(
-                onClick = { /*TODO*/ }, modifier = Modifier
+                onClick = { navController.popBackStack() }, modifier = Modifier
                     .height(30.dp)
                     .width(30.dp)
             ) {

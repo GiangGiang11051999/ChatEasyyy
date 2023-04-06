@@ -1,3 +1,4 @@
+/*
 package com.example.composeapp.ui.login
 
 import android.os.Bundle
@@ -55,4 +56,4 @@ class LoginRegisterActivityScreen : ComponentActivity() {
             }
         }
     }
-}
+}*/
