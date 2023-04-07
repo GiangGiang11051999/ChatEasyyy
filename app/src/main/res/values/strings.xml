@@ -11,4 +11,9 @@
     <string name="title_forgot_password">Forgot password</string>
     <string name="title_forgot_password1">Please enter your email address. You will receive a link to create a new password via email.</string>
     <string name="title_send">Send</string>
+    <string name="title_nav_home">Home</string>
+    <string name="title_nav_messages">Messages</string>
+    <string name="title_nav_streams">Streams</string>
+    <string name="title_nav_notification">Notifications</string>
+    <string name="title_nav_profile">Profiles</string>
 </resources>

@@ -96,6 +96,7 @@ fun ComposeAppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = replyColorScheme.primary.toArgb()
+            window.navigationBarColor = replyColorScheme.background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

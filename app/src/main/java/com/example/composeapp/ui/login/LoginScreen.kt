@@ -86,7 +86,7 @@ fun formLogin() {
 @Composable
 fun ButtonLogin(navigationActions: ChatNavigationActions) {
     TextButtonChat(
-        onClickListener = { /*TODO*/ },
+        onClickListener = navigationActions.navigateToHome,
         modifier = Modifier
             .height(55.dp)
             .fillMaxWidth()

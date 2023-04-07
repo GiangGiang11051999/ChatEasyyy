@@ -41,6 +41,12 @@ val Typography = Typography(
         fontStyle = FontStyle.Italic,
         fontSize = 13.sp,
         textAlign = TextAlign.Center
+    ),
+    labelMedium = TextStyle(
+        fontFamily = robotoFontFamilys,
+        fontWeight = FontWeight.Medium,
+        fontSize = 10.sp,
+        textAlign = TextAlign.Center
     )
     /* Other default text styles to override
     button = TextStyle(

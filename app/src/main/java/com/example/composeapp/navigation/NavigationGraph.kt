@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.composeapp.ui.home.HomeScreen
 import com.example.composeapp.ui.login.CreateLayoutRegisterScreen
 import com.example.composeapp.ui.login.LoadLoginScreen
 import com.example.composeapp.ui.login.LoadScreenForgotPassword
@@ -41,6 +42,21 @@ fun ChatNavGraph(
         }
         composable(ChatNavigations.FORGOT_PASSWORD_ROUTE) {
             LoadScreenForgotPassword(navController, navigationActions)
+        }
+        composable(ChatNavigations.HOME_ROUTE) {
+            HomeScreen(navController = navController, navigationActions = navigationActions)
+        }
+        composable(ChatNavigations.STREAMS_ROUTE) {
+            HomeScreen(navController = navController, navigationActions = navigationActions)
+        }
+        composable(ChatNavigations.MESSAGES_ROUTE) {
+            HomeScreen(navController = navController, navigationActions = navigationActions)
+        }
+        composable(ChatNavigations.PROFILE_ROUTE) {
+            HomeScreen(navController = navController, navigationActions = navigationActions)
+        }
+        composable(ChatNavigations.NOTIFICATIONS_ROUTE) {
+            HomeScreen(navController = navController, navigationActions = navigationActions)
         }
     }
 }
