@@ -13,6 +13,7 @@ object ChatNavigations {
     const val MESSAGES_ROUTE = "MessagesScreen"
     const val NOTIFICATIONS_ROUTE = "NotificationsScreen"
     const val PROFILE_ROUTE = "ProfileScreen"
+    const val NOTIFICATION_COMMON_ROUTE = "NotificationCommonScreen"
 }
 
 class ChatNavigationActions(navHostController: NavHostController) {
@@ -45,6 +46,12 @@ class ChatNavigationActions(navHostController: NavHostController) {
     }
     val navigateToForgotPassword: () -> Unit = {
         navHostController.navigate(ChatNavigations.FORGOT_PASSWORD_ROUTE) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigateToNotificationCommon: () -> Unit = {
+        navHostController.navigate(ChatNavigations.NOTIFICATION_COMMON_ROUTE) {
             launchSingleTop = true
             restoreState = true
         }

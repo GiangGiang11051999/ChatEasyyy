@@ -40,7 +40,7 @@ fun ChatApp() {
 
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route ?: ChatNavigations.MAIN_ROUTE
-        val idBackgroundDrawble = backgrounds[currentRoute] ?: R.drawable.background_home_auth
+        val idBackgroundDrawble = backgrounds[currentRoute]
         Scaffold(
             topBar = {},
             content = { padding ->
@@ -49,21 +49,25 @@ fun ChatApp() {
                         .fillMaxSize()
                         .padding(padding)
                 ) {
-                    Image(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .graphicsLayer { }.drawWithContent {
-                            val colors = listOf(Color.Black, Color(0x242A37).copy(0.35f))
-                            drawContent()
-                            drawRect(
-                                brush = Brush.verticalGradient(colors),
-                                blendMode = BlendMode.DstIn
-                            )
-                        },
-                        painter = painterResource(id = idBackgroundDrawble),
-                        contentDescription = "Background content with home login register",
-                        contentScale = ContentScale.FillBounds
-                    )
+                    idBackgroundDrawble?.let {
+                        Image(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .graphicsLayer { }
+                                .drawWithContent {
+                                    val colors = listOf(Color.Black, Color(0x242A37).copy(0.35f))
+                                    drawContent()
+                                    drawRect(
+                                        brush = Brush.verticalGradient(colors),
+                                        blendMode = BlendMode.DstIn
+                                    )
+                                },
+                            painter = painterResource(id = idBackgroundDrawble),
+                            contentDescription = "Background content with home login register",
+                            contentScale = ContentScale.FillBounds
+                        )
+                    }
+
                     ChatNavGraph(
                         isExpandedScreen = true,
                         navController = navController,

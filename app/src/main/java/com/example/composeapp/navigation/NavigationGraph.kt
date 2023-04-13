@@ -12,6 +12,7 @@ import com.example.composeapp.ui.login.CreateLayoutRegisterScreen
 import com.example.composeapp.ui.login.LoadLoginScreen
 import com.example.composeapp.ui.login.LoadScreenForgotPassword
 import com.example.composeapp.ui.main.MainScreen
+import com.example.composeapp.ui.notification.NotificationCommonScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,6 +58,13 @@ fun ChatNavGraph(
         }
         composable(ChatNavigations.NOTIFICATIONS_ROUTE) {
             HomeScreen(navController = navController, navigationActions = navigationActions)
+        }
+
+        composable(ChatNavigations.NOTIFICATION_COMMON_ROUTE) {
+            NotificationCommonScreen(
+                navController = navController,
+                navigationActions = navigationActions
+            )
         }
     }
 }

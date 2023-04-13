@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.composeapp.R
 import com.example.composeapp.navigation.ChatNavigationActions
+import com.example.composeapp.ui.common.CreateButtonBack
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
@@ -31,18 +32,7 @@ fun CreateLayoutRegisterScreen(
             .fillMaxHeight()
             .padding(vertical = 50.dp, horizontal = 20.dp)
     ) {
-        IconButton(
-            onClick = { navController.popBackStack() },
-            modifier = Modifier
-                .height(30.dp)
-                .width(30.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = "Close",
-                tint = MaterialTheme.colorScheme.onPrimary
-            )
-        }
+        CreateButtonBack(navController = navController)
         Spacer(modifier = Modifier.height(10.dp))
         LoadTitleRegister()
         Spacer(modifier = Modifier.height(50.dp))
