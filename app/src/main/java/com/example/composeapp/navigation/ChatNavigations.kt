@@ -14,6 +14,7 @@ object ChatNavigations {
     const val NOTIFICATIONS_ROUTE = "NotificationsScreen"
     const val PROFILE_ROUTE = "ProfileScreen"
     const val NOTIFICATION_COMMON_ROUTE = "NotificationCommonScreen"
+    const val INVITE_FRIEND_ROUTE = "InviteFriendScreen"
 }
 
 class ChatNavigationActions(navHostController: NavHostController) {
@@ -77,6 +78,12 @@ class ChatNavigationActions(navHostController: NavHostController) {
     }
     val navigateToProfiles: () -> Unit = {
         navHostController.navigate(ChatNavigations.PROFILE_ROUTE) {
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigationToInviteFriend: () -> Unit = {
+        navHostController.navigate(ChatNavigations.INVITE_FRIEND_ROUTE) {
             launchSingleTop = true
             restoreState = true
         }

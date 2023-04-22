@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -21,6 +21,8 @@ import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.CreateButtonBack
 import com.example.composeapp.ui.common.ImageCircleChat
 import com.example.composeapp.ui.theme.Typography
+import com.example.composeapp.utils.iconexts.NotificationIconDisable
+import com.example.composeapp.utils.iconexts.NotificationIconEnable
 
 @Composable
 fun NotificationCommonScreen(
@@ -35,7 +37,20 @@ fun NotificationCommonScreen(
     ) {
         Column(Modifier.fillMaxSize()) {
             Spacer(modifier = Modifier.height(50.dp))
-            CreateButtonBack(navController = navController)
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                CreateButtonBack(navController = navController)
+                TextButton(onClick = navigationActions.navigationToInviteFriend) {
+                    Text(
+                        text = "Next",
+                        style = Typography.displayMedium,
+                        color = MaterialTheme.colorScheme.primaryContainer
+                    )
+                }
+            }
             Spacer(modifier = Modifier.height(40.dp))
             ImageCircleChat(
                 height = 150.dp,
@@ -67,9 +82,7 @@ fun NotificationCommonScreen(
 
 @Composable
 fun ButtonToggleNotification(navigationActions: ChatNavigationActions) {
-    val isOnNotification by rememberSaveable {
-        mutableStateOf(value = false)
-    }
+    var isOnNotification by rememberSaveable { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .height(67.dp)
@@ -82,18 +95,25 @@ fun ButtonToggleNotification(navigationActions: ChatNavigationActions) {
         Row(
             Modifier
                 .fillMaxSize()
-                .padding(20.dp)
+                .padding(20.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
                 text = "Turn on notifications",
                 color = Color.Black,
                 style = Typography.displayMedium
             )
-            IconButton(onClick = { !isOnNotification }) {
-                Icon(
-                    bitmap = ImageBitmap.imageResource(id = if (isOnNotification) R.drawable.ic_notification_on else R.drawable.ic_notification_off),
-                    contentDescription = "Icon Notification "
-                )
+            IconButton(
+                onClick = {
+                    isOnNotification = !isOnNotification
+                }, modifier = Modifier
+                    .height(32.dp)
+                    .width(52.dp)
+                    .padding(bottom = 2.dp)
+            ) {
+                if (isOnNotification) NotificationIconEnable() else
+                    NotificationIconDisable()
             }
         }
     }

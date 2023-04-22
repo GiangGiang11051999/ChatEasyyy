@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.composeapp.ui.home.HomeScreen
+import com.example.composeapp.ui.invite_friend.InviteFriendScreen
 import com.example.composeapp.ui.login.CreateLayoutRegisterScreen
 import com.example.composeapp.ui.login.LoadLoginScreen
 import com.example.composeapp.ui.login.LoadScreenForgotPassword
@@ -62,6 +63,13 @@ fun ChatNavGraph(
 
         composable(ChatNavigations.NOTIFICATION_COMMON_ROUTE) {
             NotificationCommonScreen(
+                navController = navController,
+                navigationActions = navigationActions
+            )
+        }
+
+        composable(ChatNavigations.INVITE_FRIEND_ROUTE) {
+            InviteFriendScreen(
                 navController = navController,
                 navigationActions = navigationActions
             )
