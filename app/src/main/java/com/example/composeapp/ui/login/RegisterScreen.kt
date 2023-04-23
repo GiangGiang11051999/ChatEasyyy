@@ -15,6 +15,7 @@ import androidx.navigation.NavHostController
 import com.example.composeapp.R
 import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.CreateButtonBack
+import com.example.composeapp.ui.common.CreateTitleScreen
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
@@ -34,23 +35,13 @@ fun CreateLayoutRegisterScreen(
     ) {
         CreateButtonBack(navController = navController)
         Spacer(modifier = Modifier.height(10.dp))
-        LoadTitleRegister()
+        CreateTitleScreen(titleId = R.string.title_signup_screen)
         Spacer(modifier = Modifier.height(50.dp))
         CreateLayoutFormRegister()
         Spacer(modifier = Modifier.height(40.dp))
         ButtonRegister()
     }
 }
-
-@Composable
-fun LoadTitleRegister() {
-    val context: Context = LocalContext.current
-    Text(
-        text = context.getString(R.string.title_signup_screen), style = Typography.headlineLarge,
-        color = MaterialTheme.colorScheme.onPrimary
-    )
-}
-
 
 @ExperimentalMaterial3Api
 @Composable

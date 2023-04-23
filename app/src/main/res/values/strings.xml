@@ -16,4 +16,5 @@
     <string name="title_nav_streams">Streams</string>
     <string name="title_nav_notification">Notifications</string>
     <string name="title_nav_profile">Profiles</string>
+    <string name="title_nav_invite">Invite Friends</string>
 </resources>

@@ -18,6 +18,7 @@ import androidx.navigation.NavHostController
 import com.example.composeapp.R
 import com.example.composeapp.navigation.ChatNavigationActions
 import com.example.composeapp.ui.common.CreateButtonBack
+import com.example.composeapp.ui.common.CreateTitleScreen
 import com.example.composeapp.ui.common.OutlinedTextFieldChat
 import com.example.composeapp.ui.common.TextButtonChat
 import com.example.composeapp.ui.theme.Shapes
@@ -50,12 +51,9 @@ fun LoadLoginScreen(navController: NavHostController, navigationActions: ChatNav
 
 @Composable
 fun loadTitleLogin() {
-    val context: Context = LocalContext.current
-    Text(
-        text = context.getString(R.string.title_welcome_back), style = Typography.headlineLarge,
-        color = MaterialTheme.colorScheme.onPrimary
-    )
+    CreateTitleScreen(titleId = R.string.title_welcome_back)
     Spacer(modifier = Modifier.height(10.dp))
+    val context = LocalContext.current
     Text(
         text = context.getString(R.string.title_welcome_back1), style = Typography.displayMedium,
         color = MaterialTheme.colorScheme.onPrimary
