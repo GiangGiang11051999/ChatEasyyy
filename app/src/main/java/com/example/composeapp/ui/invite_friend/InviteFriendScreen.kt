@@ -44,7 +44,7 @@ fun InviteFriendScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 CreateButtonBack(navController = navController, icon = Icons.Default.Close)
-                TextButton(onClick = navigationActions.navigationToInviteFriend) {
+                TextButton(onClick = navigationActions.navigateToHome) {
                     Text(
                         text = "Next",
                         style = Typography.displayMedium,

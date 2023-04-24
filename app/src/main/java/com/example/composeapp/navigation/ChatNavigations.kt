@@ -20,9 +20,7 @@ object ChatNavigations {
 class ChatNavigationActions(navHostController: NavHostController) {
     val navigateToHome: () -> Unit = {
         navHostController.navigate(ChatNavigations.HOME_ROUTE) {
-            popUpTo(navHostController.graph.findStartDestination().id) {
-                saveState = true
-            }
+            popUpTo(0)
             launchSingleTop = true
             restoreState = true
         }
@@ -55,6 +53,7 @@ class ChatNavigationActions(navHostController: NavHostController) {
         navHostController.navigate(ChatNavigations.NOTIFICATION_COMMON_ROUTE) {
             launchSingleTop = true
             restoreState = true
+            popUpTo(0)
         }
     }
     val navigateToStreams: () -> Unit = {
@@ -84,6 +83,7 @@ class ChatNavigationActions(navHostController: NavHostController) {
     }
     val navigationToInviteFriend: () -> Unit = {
         navHostController.navigate(ChatNavigations.INVITE_FRIEND_ROUTE) {
+            popUpTo(0)
             launchSingleTop = true
             restoreState = true
         }
