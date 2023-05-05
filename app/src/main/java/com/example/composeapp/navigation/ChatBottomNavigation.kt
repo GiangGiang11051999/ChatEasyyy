@@ -2,6 +2,7 @@ package com.example.composeapp.navigation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.BottomNavigation
@@ -12,7 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -39,7 +39,8 @@ fun ChatBottomNavigation(
         AnimatedVisibility(visible = listItems.map { it.route }.contains(currentRoute)) {
             BottomNavigation(
                 backgroundColor = MaterialTheme.colorScheme.background,
-                contentColor = MaterialTheme.colorScheme.primaryContainer
+                contentColor = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier.displayCutoutPadding()
             ) {
 
                 listItems.forEach {
